@@ -57,7 +57,7 @@ public class SinhVien {
 		this.gioitinh = gioitinh;
 	}
 	
-	public String getEmail(String email) {
+	public String getEmail() {
 		return email;
 	}
 	
