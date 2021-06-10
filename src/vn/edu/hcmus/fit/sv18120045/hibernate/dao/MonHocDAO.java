@@ -1,6 +1,6 @@
 package vn.edu.hcmus.fit.sv18120045.hibernate.dao;
 
-import vn.edu.hcmus.fit.sv18120045.hibernate.entity.MonHoc;
+import vn.edu.hcmus.fit.sv18120045.hibernate.entity.*;
 import vn.edu.hcmus.fit.sv18120045.hibernate.util.*;
 import java.sql.*;
 
@@ -11,15 +11,15 @@ public class MonHocDAO {
         try {
             conn = HibernateUtil.getConnection();
 
-            // create_monHoc @maMonHoc NVARCHAR(10), @tenMonHoc CHAR(100), @soTinChi INT
+            // create_monHoc @maMonHoc CHAR(10), @tenMonHoc NVARCHAR(100), @soTinChi INT
             CallableStatement addMon = conn.prepareCall("{Call create_monHoc(?, ?, ?)}");
             addMon.setString(1, mh.getMaMH());
-            addMon.setString(2,mh.getTenMH());
-            addMon.setLong(3, mh.getSoTinChi());
+            addMon.setString(2, mh.getTenMH());
+            addMon.setInt(3, mh.getSoTinChi());
             addMon.execute();
         }
         catch (SQLException se) {
-            System.err.println("Loi o ham addMonHoc(String tenMonHoc, String maMonHoc) file MonHocDAO");
+            System.err.println("Loi o ham addMonHoc(Monhoc mh) file MonHocDAO");
             do {
                 System.out.println("MESSAGE: " + se.getMessage());
                 System.out.println();

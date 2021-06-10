@@ -10,9 +10,6 @@ import javax.persistence;
 public class MonHoc {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private String id;
-	
 	@Column (name = "maMH")
 	private String maMH;
 	

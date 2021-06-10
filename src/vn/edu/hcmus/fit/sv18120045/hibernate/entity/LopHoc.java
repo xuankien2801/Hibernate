@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class LopHoc {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private String id;
+	@Column (name = "maLop")
+	private String maLop;
 	
 	@Column (name = "TongSoSV")
 	private int TongSoSV;
@@ -26,8 +26,8 @@ public class LopHoc {
 		return id;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String maLop) {
+		this.maLop = maLop;
 	}
 	
 	public int getTongSoSV() {
@@ -57,8 +57,8 @@ public class LopHoc {
 	public LopHoc() {
 	}
 	
-	public LopHoc(String id, int TongSoSV, int TongSoNam, int TongSoNu) {
-		this.id = id;
+	public LopHoc(String maLop, int TongSoSV, int TongSoNam, int TongSoNu) {
+		this.maLop = maLop;
 		this.TongSoSV = TongSoSV;
 		this.TongSoNam = TongSoNam;
 		this.TongSoNu = TongSoNu;

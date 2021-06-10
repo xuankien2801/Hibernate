@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class GiaoVu {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private long id;
+	@Column (name = "maGV")
+	private String maGV;
 	
 	@Column (name = "hoten")
 	private String hoten;
@@ -26,12 +26,12 @@ public class GiaoVu {
 	@Column (name = "password")
 	private String password;
 	
-	public long getid() {
-		return id;
+	public String getmaGV() {
+		return maGV;
 	}
 	
-	public void setid(long id) {
-		this.id = id;
+	public void setmaGV(String maGV) {
+		this.maGV = maGV;
 	}
 	
 	public String getHoten() {
@@ -69,7 +69,8 @@ public class GiaoVu {
 	public GiaoVu() {
 	}
 	
-	public GiaoVu(String hoten, String gioitinh, String email, String password) {
+	public GiaoVu(String maGV, String hoten, String gioitinh, String email, String password) {
+		this.maGV = maGV;
 		this.hoten = hoten;
 		this.gioitinh = gioitinh;
 		this.email = email;

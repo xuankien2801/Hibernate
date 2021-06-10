@@ -17,24 +17,23 @@ import org.hibernate.Session;
 public class SinhVienDAO {
 	
 	//them sinh vien vao db
-	public static void addSinhVien(SinhVien sv, String tenLop) throws SQLException {
+	public static void addSinhVien(SinhVien sv, String hocPhan) throws SQLException {
 		Connection conn = null;
 		conn = HibernateUtil.getConnection();
 		
 		CallableStatement checkLopHocExists = conn.prepareCall("{? = Call check_exists_lopHoc(?)}");
         checkLopHocExists.registerOutParameter(1, Types.INTEGER);
-        checkLopHocExists.setString(2, tenLop);
+        checkLopHocExists.setString(2, hocPhan);
         checkLopHocExists.execute();
         if (checkLopHocExists.getInt(1) == 1) {
             // Import_SinhVien @MSSV INT, @HoTen NVARCHAR(100), @GioiTinh NVARCHAR(3), @Email CHAR(100), @TenLop NVARCHAR(10)
-            CallableStatement statement = conn.prepareCall("{Call_Import_SinhVien(?, ?, ?, ?, ?)}");
-            statement.setString(1, sv.getmssv());
-            statement.setString(2, sv.getHoten());
-            statement.setString(3, sv.getGioitinh());
-            statement.setString(4, sv.getEmail());
-            statement.setString(5, tenLop);
-            
-            statement.execute();
+            CallableStatement addSV = conn.prepareCall("{Call_Import_SinhVien(?, ?, ?, ?, ?)}");
+            addSV.setString(1, sv.getmssv());
+            addSV.setString(2, sv.getHoten());
+            addSV.setString(3, sv.getGioitinh());
+            addSV.setString(4, sv.getEmail());
+            addSV.setString(5, hocPhan);
+            addSV.execute();
         }
         else {
         	throw new RuntimeException();

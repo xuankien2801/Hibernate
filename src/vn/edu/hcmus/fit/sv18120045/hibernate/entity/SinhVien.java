@@ -11,7 +11,7 @@ public class SinhVien implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
-	private int id;
+	private String id;
 	
 	@Column (name = "mssv")
 	private String mssv;
@@ -25,11 +25,11 @@ public class SinhVien implements Serializable {
 	@Column (name = "email")
 	private String email;
 	
-	public int getid() {
+	public String getid() {
 		return id;
 	}
 	
-	public void setid(int id) {
+	public void setid(String id) {
 		this.id = id;
 	}
 	

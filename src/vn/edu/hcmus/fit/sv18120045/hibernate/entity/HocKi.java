@@ -12,8 +12,6 @@ import javax.persistence.*;
 public class HocKi {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private String id;
 	
 	@Column (name = "tenHK")
 	private String tenHK;
@@ -26,14 +24,6 @@ public class HocKi {
 	
 	@Column (name = "ngayKT")
 	private Date ngayKT;
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
 	
 	public String getTenHK() {
 		return tenHK;
@@ -70,8 +60,7 @@ public class HocKi {
 	public HocKi() {
 	}
 	
-	public HocKi(String id, String tenHK, String namhoc, Date ngayBD, Date ngayKT) {
-		this.id = id;
+	public HocKi(String tenHK, String namhoc, Date ngayBD, Date ngayKT) {
 		this.tenHK = tenHK;
 		this.namhoc = namhoc;
 		this.ngayBD = ngayBD;

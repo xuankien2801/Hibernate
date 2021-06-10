@@ -10,8 +10,8 @@ import javax.persistence;
 public class HocPhan {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private String id;
+	@Column (name = "maHP")
+	private String maHP;
 	
 	@Column (name = "maMH")
 	private String maMH;
@@ -34,12 +34,12 @@ public class HocPhan {
 	@Column (name = "ca")
 	private int ca;
 	
-	public String getId() {
-		return id;
+	public String getMaHP() {
+		return maHP;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setMaHP(String maHP) {
+		this.maHP = maHP;
 	}
 	
 	public String getMaMH() {
@@ -101,8 +101,7 @@ public class HocPhan {
 	public HocPhan() {
 	}
 	
-	public HocPhan(String id, String maMH, String tenMH, int sotinchi, String giaovienLT, String tenPhongHoc, String thu, int ca) {
-		this.id = id;
+	public HocPhan(String maMH, String tenMH, int sotinchi, String giaovienLT, String tenPhongHoc, String thu, int ca) {
 		this.maMH = maMH;
 		this.tenMH = tenMH;
 		this.sotinchi = sotinchi;

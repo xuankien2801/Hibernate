@@ -14,28 +14,32 @@ public class GiaoVuDAO {
 	public static void addGiaoVu(GiaoVu gv) throws SQLException {
 		Connection conn = null;
 		conn = HibernateUtil.getConnection();
+		try {
 		
-		CallableStatement checkLopHocExists = conn.prepareCall("{? = Call check_exists_lopHoc(?)}");
-        checkLopHocExists.registerOutParameter(1, Types.INTEGER);
-        checkLopHocExists.execute();
-        if (checkLopHocExists.getInt(1) == 1) {
             // Import_SinhVien @HoTen NVARCHAR(100), @GioiTinh NVARCHAR(3), @Email CHAR(100), @Password password
-            CallableStatement statement = conn.prepareCall("{Call_Import_GiaoVu(?, ?, ?, ?, ?)}");
-            statement.setString(1, gv.getHoten());
-            statement.setString(2, gv.getGioitinh());
-            statement.setString(3, gv.getEmail());
-            statement.setString(4, gv.getPassword());
-            statement.execute();
+            CallableStatement addGiaoVu = conn.prepareCall("{Call_Import_GiaoVu(?, ?, ?, ?, ?)}");
+            addGiaoVu.setString(1, gv.getmaGV());
+            addGiaoVu.setString(2, gv.getHoten());
+            addGiaoVu.setString(3, gv.getGioitinh());
+            addGiaoVu.setString(4, gv.getEmail());
+            addGiaoVu.setString(5, gv.getPassword());
+            addGiaoVu.execute();
         }
-        else {
-        	throw new RuntimeException();
+		catch (SQLException se) {
+            System.err.println("Loi o ham addGiaoVu(GiaoVu gv) file GiaoVuDAO");
+            do {
+                System.out.println("MESSAGE: " + se.getMessage());
+                System.out.println();
+                se = se.getNextException();
+            }
+            while (se != null);
         }
 	}
 	
 	// Doc 1 dong cua file input
 	private static GiaoVu readGiaoVu(String line) {
 	    String[] s = line.split(",");
-        GiaoVu gv = new GiaoVu(s[1], s[2], s[3], s[4]);
+        GiaoVu gv = new GiaoVu(s[1], s[2], s[3], s[4], s[5]);
         return gv;
     }
 	

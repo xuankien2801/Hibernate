@@ -9,23 +9,12 @@ import javax.persistence.*;
 @Table (name = "course registration session")
 public class KiDangKyHocPhan {
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private String id;
-		
+	@GeneratedValue (strategy = GenerationType.IDENTITY)			
 	@Column (name = "ngayBD")
 	private Date ngayBD;
 	
 	@Column (name = "ngayKT")
 	private Date ngayKT;
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}	
 	
 	public Date getNgayBD() {
 		return ngayBD;
@@ -46,8 +35,7 @@ public class KiDangKyHocPhan {
 	public KiDangKyHocPhan() {
 	}
 	
-	public KiDangKyHocPhan(String id, Date ngayBD, Date ngayKT) {
-		this.id = id;		
+	public KiDangKyHocPhan(Date ngayBD, Date ngayKT) {
 		this.ngayBD = ngayBD;
 		this.ngayKT = ngayKT;
 	}
