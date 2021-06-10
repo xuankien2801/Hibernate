@@ -1,25 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package vn.edu.hcmus.fit.sv18120045.hibernate.util;
 
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.Properties;
-
 import vn.edu.hcmus.fit.sv18120045.hibernate.entity.*;
-
-import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+
 public class HibernateUtil {
+    private static SessionFactory sessionFactory;
+
+    static {
+        try {
+            Configuration config = new Configuration();
+            config.configure();
+            sessionFactory = config.buildSessionFactory();
+        }catch (HibernateException e){
+            throw e;
+        }
+    }
+
+    public static SessionFactory getSessionFactory(){
+        return sessionFactory;
+    }
+
     // Property based configuration
     private static SessionFactory sessionJavaConfigFactory = null;
 
@@ -78,8 +87,10 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(SinhVien.class);
             configuration.addAnnotatedClass(MonHoc.class);
             configuration.addAnnotatedClass(LopHoc.class);
-            configuration.addAnnotatedClass(SinhVien_MonHoc.class);
-            configuration.addAnnotatedClass(MonHoc_LopHoc.class);
+            configuration.addAnnotatedClass(GiaoVu.class);
+            configuration.addAnnotatedClass(HocKi.class);
+            configuration.addAnnotatedClass(HocPhan.class);
+            configuration.addAnnotatedClass(KiDangKyHocPhan.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             // System.out.println("Hibernate Java Config serviceRegistry created");
@@ -107,5 +118,4 @@ public class HibernateUtil {
         }
         return connection;
     }
-}
 }

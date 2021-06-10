@@ -1,11 +1,21 @@
 package vn.edu.hcmus.fit.sv18120045.hibernate.dao;
 
 import java.io.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.List;
 
 import vn.edu.hcmus.fit.sv18120045.hibernate.entity.*;
 import vn.edu.hcmus.fit.sv18120045.hibernate.util.HibernateUtil;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 public class SinhVienDAO {
+	
 	//them sinh vien vao db
 	public static void addSinhVien(SinhVien sv, String tenLop) throws SQLException {
 		Connection conn = null;
@@ -16,19 +26,18 @@ public class SinhVienDAO {
         checkLopHocExists.setString(2, tenLop);
         checkLopHocExists.execute();
         if (checkLopHocExists.getInt(1) == 1) {
-            // Import_SinhVien @mssv CHAR(10), @hoTen NVARCHAR(100), @gioiTinh NVARCHAR(3), @cmnd CHAR(9), @tenLop VARCHAR(10)
-            CallableStatement statement = conn.prepareCall("{Call Import_SinhVien(?, ?, ?, ?, ?)}");
+            // Import_SinhVien @MSSV INT, @HoTen NVARCHAR(100), @GioiTinh NVARCHAR(3), @Email CHAR(100), @TenLop NVARCHAR(10)
+            CallableStatement statement = conn.prepareCall("{Call_Import_SinhVien(?, ?, ?, ?, ?)}");
             statement.setString(1, sv.getmssv());
-            statement.setString(2, sv.getHoTen());
-            statement.setString(3, sv.getGioiTinh());
+            statement.setString(2, sv.getHoten());
+            statement.setString(3, sv.getGioitinh());
             statement.setString(4, sv.getEmail());
             statement.setString(5, tenLop);
             
-            //quang loi neu sinh vien them vao bi trung
             statement.execute();
         }
         else {
-        	throw new RuntimeException;
+        	throw new RuntimeException();
         }
 	}
 	

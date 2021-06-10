@@ -2,19 +2,19 @@ package vn.edu.hcmus.fit.sv18120045.hibernate.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "account_sinhvien")
-public class SinhVien {
+public class SinhVien implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (name = "id")
-	private String id;
+	private int id;
 	
 	@Column (name = "mssv")
-	private int mssv;
+	private String mssv;
 	
 	@Column (name = "hoten")
 	private String hoten;
@@ -25,19 +25,19 @@ public class SinhVien {
 	@Column (name = "email")
 	private String email;
 	
-	public String getid() {
+	public int getid() {
 		return id;
 	}
 	
-	public void setid(String id) {
+	public void setid(int id) {
 		this.id = id;
 	}
 	
-	public int getmssv() {
+	public String getmssv() {
 		return mssv;
 	}
 	
-	public void setmssv(int mssv) {
+	public void setmssv(String mssv) {
 		this.mssv = mssv;
 	}
 	
@@ -68,8 +68,7 @@ public class SinhVien {
 	public SinhVien() {
 	}
 	
-	public SinhVien(String id, int mssv, String hoten, String gioitinh, String email) {
-		this.id = id;
+	public SinhVien(String mssv, String hoten, String gioitinh, String email) {
 		this.mssv = mssv;
 		this.hoten = hoten;
 		this.gioitinh = gioitinh;

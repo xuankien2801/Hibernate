@@ -57,7 +57,7 @@ public class MonHoc {
 	public MonHoc() {
 	}
 	
-	public MonHoc(String id, String maMH, String tenMH, int sotinchi) {
+	public MonHoc(String maMH, String tenMH, int sotinchi) {
 		this.id = id;
 		this.maMH = maMH;
 		this.tenMH = tenMH;

@@ -50,7 +50,7 @@ public class GiaoVu {
 		this.gioitinh = gioitinh;
 	}
 	
-	public String getEmail(String email) {
+	public String getEmail() {
 		return email;
 	}
 	
@@ -69,8 +69,7 @@ public class GiaoVu {
 	public GiaoVu() {
 	}
 	
-	public GiaoVu(long id, String hoten, String gioitinh, String email, String password) {
-		this.id = id;
+	public GiaoVu(String hoten, String gioitinh, String email, String password) {
 		this.hoten = hoten;
 		this.gioitinh = gioitinh;
 		this.email = email;
