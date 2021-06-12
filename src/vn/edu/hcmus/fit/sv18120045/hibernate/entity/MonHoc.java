@@ -5,27 +5,21 @@ import java.util.List;
 
 import javax.persistence;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+
 @Entity
-@Table (name = "subject")
+@Table (name = "_subject")
 public class MonHoc {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "maMH")
+	@Columns (columns = "maMH")
 	private String maMH;
 	
-	@Column (name = "tenMH")
+	@Columns (columns = "tenMH")
 	private String tenMH;
 	
-	@Column (name = "sotinchi")
+	@Columns (columns = "sotinchi")
 	private int sotinchi;
-		
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
 	
 	public String getMaMH() {
 		return maMH;
@@ -55,7 +49,6 @@ public class MonHoc {
 	}
 	
 	public MonHoc(String maMH, String tenMH, int sotinchi) {
-		this.id = id;
 		this.maMH = maMH;
 		this.tenMH = tenMH;
 		this.sotinchi = sotinchi;		

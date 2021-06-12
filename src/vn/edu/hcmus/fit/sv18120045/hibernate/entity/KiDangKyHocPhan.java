@@ -5,15 +5,15 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
+import org.hibernate.annotations.*;
+
 @Entity
-@Table (name = "course registration session")
+@Table (name = "course_registration_session")
 public class KiDangKyHocPhan {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)			
-	@Column (name = "ngayBD")
+	@Columns (columns = "ngayBD")
 	private Date ngayBD;
 	
-	@Column (name = "ngayKT")
+	@Columns (columns = "ngayKT")
 	private Date ngayKT;
 	
 	public Date getNgayBD() {

@@ -5,25 +5,25 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.*;
+
 @Entity
 @Table(name = "account_giaovu")
 
-public class GiaoVu {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "maGV")
+public class GiaoVu {	
+	@Columns (columns = "maGV")
 	private String maGV;
 	
-	@Column (name = "hoten")
+	@Columns (columns = "hoten")
 	private String hoten;
 	
-	@Coulmn (name = "gioitinh")
+	@Columns (columns = "gioitinh")
 	private String gioitinh;
 	
-	@Column (name = "email")
+	@Columns (columns = "email")
 	private String email;
 	
-	@Column (name = "password")
+	@Columns (columns = "password")
 	private String password;
 	
 	public String getmaGV() {

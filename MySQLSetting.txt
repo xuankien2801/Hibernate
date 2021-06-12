@@ -1,0 +1,3 @@
+db.user=root
+db.password=nxk123
+db.dbname=QLSV

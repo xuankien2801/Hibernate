@@ -5,21 +5,23 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+
 @Entity
 @Table(name = "class")
 public class LopHoc {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "maLop")
+	@Columns (columns = "maLop")
 	private String maLop;
 	
-	@Column (name = "TongSoSV")
+	@Columns (columns = "TongSoSV")
 	private int TongSoSV;
 	
-	@Column (name = "TongSoNam")
+	@Columns (columns = "TongSoNam")
 	private int TongSoNam;
 	
-	@Column (name = "TongSoNu")
+	@Columns (columns = "TongSoNu")
 	private int TongSoNu;
 	
 	public String getId() {

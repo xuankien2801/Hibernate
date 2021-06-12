@@ -7,22 +7,21 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.*;
+
 @Entity
 @Table(name = "semester")
-public class HocKi {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	
-	@Column (name = "tenHK")
+public class HocKi {	
+	@Columns (columns = "tenHK")
 	private String tenHK;
 	
-	@Column (name = "namhoc")
+	@Columns (columns = "namhoc")
 	private String namhoc;
 	
-	@Column (name = "ngayBD")
+	@Columns (columns = "ngayBD")
 	private Date ngayBD;
 	
-	@Column (name = "ngayKT")
+	@Columns (columns = "ngayKT")
 	private Date ngayKT;
 	
 	public String getTenHK() {

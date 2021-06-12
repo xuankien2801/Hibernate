@@ -5,33 +5,33 @@ import java.util.List;
 
 import javax.persistence;
 
+import org.hibernate.annotations.*;
+
 @Entity
 @Table (name = "course")
 public class HocPhan {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "maHP")
+	@Columns (columns = "maHP")
 	private String maHP;
 	
-	@Column (name = "maMH")
+	@Columns (columns = "maMH")
 	private String maMH;
 	
-	@Column (name = "tenMH")
+	@Columns (columns = "tenMH")
 	private String tenMH;
 	
-	@Column (name = "sotinchi")
+	@Columns (columns = "sotinchi")
 	private int sotinchi;
 	
-	@Column (name = "giaovienLT")
+	@Columns (columns = "giaovienLT")
 	private String giaovienLT;
 	
-	@Column (name = "tenPhongHoc")
+	@Columns (columns = "tenPhongHoc")
 	private String tenPhongHoc;
 	
-	@Column (name = "thu")
+	@Columns (columns = "thu")
 	private String thu;
 	
-	@Column (name = "ca")
+	@Columns (columns = "ca")
 	private int ca;
 	
 	public String getMaHP() {

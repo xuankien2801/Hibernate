@@ -1,6 +1,5 @@
 package vn.edu.hcmus.fit.sv18120045.hibernate.util;
 
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import java.io.FileInputStream;
@@ -12,23 +11,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
 
-public class HibernateUtil {
-    private static SessionFactory sessionFactory;
-
-    static {
-        try {
-            Configuration config = new Configuration();
-            config.configure();
-            sessionFactory = config.buildSessionFactory();
-        }catch (HibernateException e){
-            throw e;
-        }
-    }
-
-    public static SessionFactory getSessionFactory(){
-        return sessionFactory;
-    }
-
+public class HibernateUtil {    
+    
     // Property based configuration
     private static SessionFactory sessionJavaConfigFactory = null;
 
@@ -39,12 +23,13 @@ public class HibernateUtil {
         Properties prop = new Properties();
         InputStream inputFile = null;
         try {
-            inputFile = new FileInputStream("./SQLSetting.txt");
+            inputFile = new FileInputStream("./MySQLSetting.txt");
             prop.load(inputFile);
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=" + prop.getProperty("db.dbname");
+            String dbname = prop.getProperty("db.dbname");
             String username = prop.getProperty("db.user");
             String pass = prop.getProperty("db.password");
-            // Connection c = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=QLSV", "sa", "Long123ohio");
+            String url = "jdbc:mysql://localhost:3306/" + dbname;
+            // Connection c = DriverManager.getConnection("dbc:mysql://localhost:3306/QLSV", "root", "nxk123");
             Connection c = DriverManager.getConnection(url, username, pass);
             return c;
         }
@@ -59,20 +44,19 @@ public class HibernateUtil {
         Properties prop = new Properties();
         InputStream inputFile = null;
         try {
-            inputFile = new FileInputStream("./SQLSetting.txt");
+            inputFile = new FileInputStream("./MySQLSetting.txt");
             prop.load(inputFile);
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=" + prop.getProperty("db.dbname");
+            String dbname = prop.getProperty("db.dbname");
             String username = prop.getProperty("db.user");
             String pass = prop.getProperty("db.password");
+            String url = "jdbc:mysql://localhost:3306/" + dbname;
 
             Configuration configuration = new Configuration();
 
             // Create Properties, can be read from property files too
             Properties props = new Properties();
-            props.put("hibernate.connection.driver_class", "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            // props.put("hibernate.connection.url", "jdbc:sqlserver://localhost:1433;databaseName=QLSV");
-            // props.put("hibernate.connection.username", "sa");
-            // props.put("hibernate.connection.password", "Long123ohio");
+            Class.forName("com.mysql.jdbc.Driver");
+         
             props.put("hibernate.connection.url", url);
             props.put("hibernate.connection.username", username);
             props.put("hibernate.connection.password", pass);
@@ -82,8 +66,7 @@ public class HibernateUtil {
 
             configuration.setProperties(props);
 
-            // we can set mapping file or class with annotation
-            // addClass(SinhVien.class) will look for resource SinhVien.hbm.xml (which is not good)
+            
             configuration.addAnnotatedClass(SinhVien.class);
             configuration.addAnnotatedClass(MonHoc.class);
             configuration.addAnnotatedClass(LopHoc.class);
@@ -93,7 +76,7 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(KiDangKyHocPhan.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            // System.out.println("Hibernate Java Config serviceRegistry created");
+           
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
             return sessionFactory;

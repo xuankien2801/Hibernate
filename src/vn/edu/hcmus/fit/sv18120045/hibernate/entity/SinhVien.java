@@ -5,33 +5,24 @@ import java.util.List;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+
 @Entity
 @Table(name = "account_sinhvien")
 public class SinhVien implements Serializable {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (name = "id")
-	private String id;
-	
-	@Column (name = "mssv")
+	@Columns (columns = "mssv")
 	private String mssv;
 	
-	@Column (name = "hoten")
+	@Columns (columns = "hoten")
 	private String hoten;
 	
-	@Coulmn (name = "gioitinh")
+	@Columns (columns = "gioitinh")
 	private String gioitinh;
 	
-	@Column (name = "email")
+	@Columns (columns = "email")
 	private String email;
-	
-	public String getid() {
-		return id;
-	}
-	
-	public void setid(String id) {
-		this.id = id;
-	}
 	
 	public String getmssv() {
 		return mssv;
